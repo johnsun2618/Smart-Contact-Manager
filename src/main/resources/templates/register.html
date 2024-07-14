@@ -32,56 +32,56 @@
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label
                 >
                 <input
-                    type="text"
-                    id="name"
-                    data-th-field="*{name}"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Enter here"
-                    required
+                  type="text"
+                  id="name"
+                  data-th-field="*{name}"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Enter here"
+                  required
                 />
 
                 <p
-                    data-th-if="${#fields.hasErrors('name')}"
-                    data-th-errors="*{name}"
-                    class="text-red-600 px-1 py-2"
+                  data-th-if="${#fields.hasErrors('name')}"
+                  data-th-errors="*{name}"
+                  class="text-red-600 px-1 py-2"
                 >
-                    Name is required
+                  Name is required
                 </p>
-                </div>
-                <!-- email field -->
-                <div class="mb-3">
+              </div>
+              <!-- email field -->
+              <div class="mb-3">
                 <label
-                    for="email"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >Email</label
+                  for="email"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Email</label
                 >
                 <input
-                    data-th-field="*{email}"
-                    type="email"
-                    id="email"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="name@flowbite.com"
-                    required
+                  data-th-field="*{email}"
+                  type="email"
+                  id="email"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="name@flowbite.com"
+                  required
                 />
                 <p
-                    data-th-if="${#fields.hasErrors('email')}"
-                    data-th-errors="*{email}"
-                    class="text-red-600 px-1 py-2"
+                  data-th-if="${#fields.hasErrors('email')}"
+                  data-th-errors="*{email}"
+                  class="text-red-600 px-1 py-2"
                 ></p>
-                </div>
-                <!-- password field -->
-                    <div class="mb-3">
+              </div>
+              <!-- password field -->
+              <div class="mb-3">
                 <label
-                    for="password"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >New Password</label
+                  for="password"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >New Password</label
                 >
                 <input
-                    data-th-field="*{password}"
-                        type="password"
-                    id="password"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
+                  data-th-field="*{password}"
+                  type="password"
+                  id="password"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required
                 />
                 <p
                   data-th-if="${#fields.hasErrors('password')}"
