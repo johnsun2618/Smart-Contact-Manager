@@ -4,9 +4,6 @@ console.log("Script loaded");
 let currentTheme = getTheme();
 //initial -->
 
-// DOMContentLoaded event fires when the HTML document 
-// has been completely parsed and it  does not
-//  wait for stylesheets to load
 document.addEventListener("DOMContentLoaded", () => {
     changeTheme();
 });
@@ -47,14 +44,16 @@ function getTheme() {
 
 //change current page theme
 function changePageTheme(theme, oldTheme) {
-    //update localstorage
+    //localstorage mein update karenge
     setTheme(currentTheme);
     //remove the current theme
+
     if (oldTheme) {
         document.querySelector("html").classList.remove(oldTheme);
     }
     //set the current theme
     document.querySelector("html").classList.add(theme);
+
     // change the text of button
     document
         .querySelector("#theme_change_button")

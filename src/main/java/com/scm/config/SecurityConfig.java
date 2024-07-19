@@ -22,7 +22,7 @@ public class SecurityConfig {
     private OAuthAuthenicationSuccessHandler handler;
 
     @Autowired
-    private AuthFailureHandler authFailureHandler;
+    private AuthFailtureHandler authFailtureHandler;
 
     // configuraiton of authentication providerfor spring security
     @Bean
@@ -39,7 +39,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-        // configuration
         httpSecurity.authorizeHttpRequests(authorize -> {
             // authorize.requestMatchers("/home", "/register", "/services").permitAll();
             authorize.requestMatchers("/user/**").authenticated();
@@ -57,14 +56,11 @@ public class SecurityConfig {
             formLogin.usernameParameter("email");
             formLogin.passwordParameter("password");
 
-            
-            formLogin.failureHandler(authFailureHandler);
+            formLogin.failureHandler(authFailtureHandler);
 
         });
 
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
-
-
         // oauth configurations
 
         httpSecurity.oauth2Login(oauth -> {

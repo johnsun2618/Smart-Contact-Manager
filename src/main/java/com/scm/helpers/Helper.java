@@ -8,7 +8,6 @@ public class Helper {
 
     public static String getEmailOfLoggedInUser(Authentication authentication) {
 
-        // agar email is password se login kiya hai to : email kaise nikalenge
         if (authentication instanceof OAuth2AuthenticationToken) {
 
             var aOAuth2AuthenticationToken = (OAuth2AuthenticationToken) authentication;
@@ -42,7 +41,9 @@ public class Helper {
     }
 
     public static String getLinkForEmailVerificatiton(String emailToken) {
-        String link = "http://localhost:8081/auth/verify-email?token=" + emailToken;
+
+        String link = "http://localhost:8080/auth/verify-email?token=" + emailToken;
+
         return link;
 
     }

@@ -20,7 +20,6 @@ public class UserController {
     private UserService userService;
 
     // user dashbaord page
-
     @RequestMapping(value = "/dashboard")
     public String userDashboard() {
         System.out.println("User dashboard");
@@ -31,7 +30,7 @@ public class UserController {
 
     @RequestMapping(value = "/profile")
     public String userProfile(Model model, Authentication authentication) {
-        System.out.println("User profile");
+        
         return "user/profile";
     }
 

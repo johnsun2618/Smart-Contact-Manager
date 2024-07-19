@@ -42,22 +42,18 @@ public class User implements UserDetails {
     @Column(name = "user_name", nullable = false)
 
     private String name;
-
     @Column(unique = true, nullable = false)
     private String email;
-
     @Getter(AccessLevel.NONE)
     private String password;
-
     @Column(length = 1000)
     private String about;
-
     @Column(length = 1000)
     private String profilePic;
-
     private String phoneNumber;
 
-    @Getter(value= AccessLevel.NONE)
+    @Getter(value = AccessLevel.NONE)
+    // information
     private boolean enabled = false;
 
     private boolean emailVerified = false;
@@ -80,7 +76,7 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // list of roles[USER,ADMIN]
-        // Collection of SimpleGrantedAuthority[roles{ADMIN,USER}]
+        // Collection of SimpGrantedAuthority[roles{ADMIN,USER}]
         Collection<SimpleGrantedAuthority> roles = roleList.stream().map(role -> new SimpleGrantedAuthority(role))
                 .collect(Collectors.toList());
         return roles;
@@ -118,6 +114,7 @@ public class User implements UserDetails {
     public String getPassword() {
         return this.password;
     }
+
 
 
 }

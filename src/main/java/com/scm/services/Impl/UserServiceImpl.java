@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 
 import com.scm.entities.User;
 import com.scm.helpers.AppConstants;
+import com.scm.helpers.Helper;
 import com.scm.helpers.ResourceNotFoundException;
 import com.scm.repository.UserRepo;
+import com.scm.services.EmailService;
 import com.scm.services.UserService;
 
 
@@ -26,8 +28,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired
+    private EmailService emailService;
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public User saveUser(User user) {
@@ -39,11 +43,18 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         // set the user role
-        user.setRoleList(List.of(AppConstants.ROLE_USER));
-        logger.info(user.getProvider().toString());
 
-        return userRepo.save(user);
-        }
+        user.setRoleList(List.of(AppConstants.ROLE_USER));
+
+        logger.info(user.getProvider().toString());
+        String emailToken = UUID.randomUUID().toString();
+        user.setEmailToken(emailToken);
+        User savedUser = userRepo.save(user);
+        String emailLink = Helper.getLinkForEmailVerificatiton(emailToken);
+        emailService.sendEmail(savedUser.getEmail(), "Verify Account : Smart  Contact Manager", emailLink);
+        return savedUser;
+
+    }
 
     @Override
     public Optional<User> getUserById(String id) {
@@ -76,8 +87,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(String id) {
         User user2 = userRepo.findById(id)
-        .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-    userRepo.delete(user2);
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        userRepo.delete(user2);
+
     }
 
     @Override
@@ -95,7 +107,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         return userRepo.findAll();
-
     }
 
     @Override

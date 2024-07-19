@@ -21,7 +21,6 @@ import jakarta.validation.Valid;
 
 @Controller
 public class PageController {
-
     @Autowired
     private UserService userService;
 
@@ -73,8 +72,13 @@ public class PageController {
     // registration page
     @GetMapping("/register")
     public String register(Model model) {
+
         UserForm userForm = new UserForm();
+        // default data bhi daal sakte hai
+        // userForm.setName("Durgesh");
+        // userForm.setAbout("This is about : Write something about yourself");
         model.addAttribute("userForm", userForm);
+
         return "register";
     }
 
@@ -93,6 +97,23 @@ public class PageController {
             return "register";
         }
 
+        // TODO::Validate userForm[Next Video]
+
+        // save to database
+
+        // userservice
+
+        // UserForm--> User
+        // User user = User.builder()
+        // .name(userForm.getName())
+        // .email(userForm.getEmail())
+        // .password(userForm.getPassword())
+        // .about(userForm.getAbout())
+        // .phoneNumber(userForm.getPhoneNumber())
+        // .profilePic(
+        // "https://www.learncodewithdurgesh.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdurgesh_sir.35c6cb78.webp&w=1920&q=75")
+        // .build();
+
         User user = new User();
         user.setName(userForm.getName());
         user.setEmail(userForm.getEmail());
@@ -101,15 +122,22 @@ public class PageController {
         user.setPhoneNumber(userForm.getPhoneNumber());
         user.setEnabled(false);
         user.setProfilePic(
-                "https://avatars.githubusercontent.com/u/101565759?s=96&v=4");
+                "https://www.learncodewithdurgesh.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdurgesh_sir.35c6cb78.webp&w=1920&q=75");
 
         User savedUser = userService.saveUser(user);
+
         System.out.println("user saved :");
+
+        // message = "Registration Successful"
+
+        // add the message:
+
         Message message = Message.builder().content("Registration Successful").type(MessageType.green).build();
+
         session.setAttribute("message", message);
+
         // redirectto login page
         return "redirect:/register";
     }
-
 
 }
